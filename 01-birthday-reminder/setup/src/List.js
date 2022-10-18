@@ -1,17 +1,26 @@
-import React from 'react';
+import React from "react";
 
-const List = ({people}) => {
+const List = ({ people, setPeople }) => {
   return (
     <>
       {people.map((person) => {
-        const {id, name, age, image} = person
-        return (<article key={id} className="person">
-          <img src={image} alt={name} />
-          <div>
-            <h4>{name}</h4>
-            <p>{age} years old</p>
-          </div>
-        </article>)
+        const { id, name, age, image } = person;
+        return (
+          <article key={id} className="person">
+            <img src={image} alt={name} />
+            <div>
+              <h4>{name}</h4>
+              <p>{age} years old</p>
+              <button
+                onClick={() =>
+                  setPeople(people.filter((person) => person.id !== id))
+                }
+              >
+                Remove
+              </button>
+            </div>
+          </article>
+        );
       })}
     </>
   );
